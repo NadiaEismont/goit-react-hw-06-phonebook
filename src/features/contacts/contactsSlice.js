@@ -15,21 +15,7 @@ const contactsSlice = createSlice({
 
             return [...contacts, { id: nanoid(), name, number }];
         }
-        // addTask(state, action) {
-        //     state.push(action.payload);
-        // },
-        // deleteTask(state, action) {
-        //     const index = state.findIndex(task => task.id === action.payload);
-        //     state.splice(index, 1);
-        // },
-        // toggleCompleted(state, action) {
-        //     for (const task of state) {
-        //         if (task.id === action.payload) {
-        //             task.completed = !task.completed;
-        //             break;
-        //         }
-        //     }
-        // },
+
     },
 });
 
