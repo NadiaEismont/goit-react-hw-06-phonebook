@@ -22,7 +22,7 @@ const ContactList = () => {
   return (
     <div>
       <ul>
-        {contacts.map(contact => (
+        {getVisibleContacts().map(contact => (
           <li key={contact.id}>
             <LabelList type="text" name="name">
               {contact.name} :

@@ -12,7 +12,6 @@ const Filter = () => {
         type="text"
         value={selectedQuery}
         onChange={e => {
-          console.log(e);
           dispatch(changingFilter(e.currentTarget.value));
         }}
       />
