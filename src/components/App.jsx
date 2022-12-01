@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import Section from './Section/Section';
-import { Container } from './Container/Container.styled';
+
+// import { Container } from './Container/Container.styled';
 import { saveContacts, parseContacts } from '../utils/localstarge';
 import {
   NotificationContainer,
@@ -14,6 +14,7 @@ import {
 import 'react-notifications/lib/notifications.css';
 import { nanoid } from 'nanoid';
 import initialContacts from '../constants/contact';
+import { Box } from './Layout/Layout';
 
 export function App() {
   const [contacts, setContacts] = useState(parseContacts() ?? initialContacts);
@@ -23,9 +24,6 @@ export function App() {
     saveContacts(contacts);
   }, [contacts]);
 
-  const onContactDelete = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-  };
   const changeFilter = e => {
     setFilter(e.currentTarget.value);
   };
@@ -37,18 +35,15 @@ export function App() {
     return visibleContacts;
   };
   return (
-    <Container>
+    <Box>
       <Section title="Phonebook">
         <ContactForm />
       </Section>
       <Section title="Contacts">
         <Filter value={filter} onChange={changeFilter} />
-        <ContactList
-          contacts={getVisibleContacts()}
-          onDelete={onContactDelete}
-        />
+        <ContactList />
       </Section>
       <NotificationContainer />
-    </Container>
+    </Box>
   );
 }
