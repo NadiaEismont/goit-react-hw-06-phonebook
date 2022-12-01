@@ -1,15 +1,16 @@
-import { deleteContact } from 'features/contacts/contactsSlice';
+import { deleteContact, getContacts } from 'features/contacts/contactsSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
+import { getFilter } from 'features/contacts/filterSlice';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const onClick = id => {
     dispatch(deleteContact(id));
   };
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();

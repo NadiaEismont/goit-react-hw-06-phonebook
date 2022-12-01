@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { PropTypes } from 'prop-types';
 import {
   TagForm,
   TagInput,
@@ -36,7 +35,3 @@ export default function ContactForm() {
     </TagForm>
   );
 }
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
