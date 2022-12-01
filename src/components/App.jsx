@@ -14,7 +14,7 @@ import {
 import 'react-notifications/lib/notifications.css';
 import { nanoid } from 'nanoid';
 import initialContacts from '../constants/contact';
-import { Box } from './Layout/Layout';
+import { Layout } from './Layout/Layout';
 
 export function App() {
   const [contacts, setContacts] = useState(parseContacts() ?? initialContacts);
@@ -24,26 +24,16 @@ export function App() {
     saveContacts(contacts);
   }, [contacts]);
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    const visibleContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-    return visibleContacts;
-  };
   return (
-    <Box>
+    <Layout>
       <Section title="Phonebook">
         <ContactForm />
       </Section>
       <Section title="Contacts">
-        <Filter value={filter} onChange={changeFilter} />
+        <Filter />
         <ContactList />
       </Section>
       <NotificationContainer />
-    </Box>
+    </Layout>
   );
 }

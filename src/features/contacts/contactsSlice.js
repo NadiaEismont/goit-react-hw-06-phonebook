@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
+import { NotificationManager } from "react-notifications";
 
 
 const contactsInitialState = [];
 
-const contactsSlice = createSlice({
+export const contactsSlice = createSlice({
     name: "contacts",
     initialState: contactsInitialState,
     reducers: {
@@ -13,27 +15,14 @@ const contactsSlice = createSlice({
                 return NotificationManager.warning(`${name} is already in contacts`);
             }
 
-            return [...contacts, { id: nanoid(), name, number }];
+            return [...state, { id: nanoid(), name, number }];
         },
 
         deleteContact(state, action) {
             const { id } = action.payload;
             return (state.filter(contact => contact.id !== id));
         }
-        // deleteTask(state, action) {
-        //     const index = state.findIndex(task => task.id === action.payload);
-        //     state.splice(index, 1);
-        // },
-        // toggleCompleted(state, action) {
-        //     for (const task of state) {
-        //         if (task.id === action.payload) {
-        //             task.completed = !task.completed;
-        //             break;
-        //         }
-        //     }
-        // },
     },
 });
 
-const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;
-const tasksReducer = tasksSlice.reducer;
+export const { addContacts, deleteContact } = contactsSlice.actions;

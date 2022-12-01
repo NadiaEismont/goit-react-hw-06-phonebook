@@ -1,3 +1,4 @@
+import { deleteContact } from 'features/contacts/contactsSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
@@ -5,9 +6,19 @@ import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
 const ContactList = () => {
   const dispatch = useDispatch();
   const onClick = id => {
-    dispatch({ type: 'contacts/deleteContact', payload: { id } });
+    dispatch(deleteContact(id));
   };
   const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
+
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
+    const visibleContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+    return visibleContacts;
+  };
+
   return (
     <div>
       <ul>
