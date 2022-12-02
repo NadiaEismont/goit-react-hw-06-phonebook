@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { devToolsEnhancer } from "@redux-devtools/extension";
-import { persistedContactsReducer } from '../features/contacts/contactsSlice'
-import { filterSlice } from '../features/contacts/filterSlice';
+import { persistedContactsReducer } from './contactsSlice'
+import { filterSlice } from './filterSlice';
 import { persistStore } from 'redux-persist';
 import {
     FLUSH,
